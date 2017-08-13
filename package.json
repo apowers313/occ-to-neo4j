@@ -34,6 +34,7 @@
     "sinon": "^1.17.6"
   },
   "dependencies": {
+    "csv-write-stream": "^2.0.0",
     "neo4j-driver": "^1.4.0",
     "node-dir": "^0.1.17"
   }
