@@ -33,8 +33,8 @@ CREATE (:Agent {
     iri: row.iri,
     label: row.label,
     record_type: row.record_type,
-    given_name: row.given_name,
-    family_name: row.family_name,
+    gname: row.gname,
+    fname: row.fname,
     name: row.name,
     identifier: row.identifier
     })
