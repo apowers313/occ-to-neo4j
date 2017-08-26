@@ -37,6 +37,7 @@
     "commander": "^2.11.0",
     "csv-stringify": "^1.0.4",
     "neo4j-driver": "^1.4.0",
-    "node-dir": "^0.1.17"
+    "node-dir": "^0.1.17",
+    "sanitize-html": "^1.14.1"
   }
 }
