@@ -97,6 +97,14 @@ MATCH (dst:BibliographicResource {iri: row.dst})
 MERGE (src)-[:PARTOF]->(dst)
 RETURN "Created BR part-of links:" AS Result, count(row) AS ` `;
 
+// add citation links
+USING PERIODIC COMMIT 10000
+LOAD CSV WITH HEADERS FROM "file:///br-citation-link.csv" AS row
+MATCH (src:BibliographicResource {iri: row.src})
+MATCH (dst:BibliographicResource {iri: row.dst})
+MERGE (src)-[:CITATION]->(dst)
+RETURN "Created BR citation links:" AS Result, count(row) AS ` `;
+
 // add ID links
 USING PERIODIC COMMIT 10000
 LOAD CSV WITH HEADERS FROM "file:///br-id-link.csv" AS row
@@ -136,13 +144,5 @@ RETURN "Created BR contributor links:" AS Result, count(row) AS ` `;
 // MATCH (br:BibliographicResource {iri: row.src})
 // MATCH (role:Role {iri: row.dst})
 // MERGE (br)-[:ROLE {role: role.role_type}]->(role);
-
-// add citation links
-USING PERIODIC COMMIT 10000
-LOAD CSV WITH HEADERS FROM "file:///br-citation-link.csv" AS row
-MATCH (src:BibliographicResource {iri: row.src})
-MATCH (dst:BibliographicResource {iri: row.dst})
-MERGE (src)-[:CITATION]->(dst)
-RETURN "Created BR citation links:" AS Result, count(row) AS ` `;
 
 RETURN "done." AS Result;
