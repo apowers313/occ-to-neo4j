@@ -16,4 +16,12 @@ console.log ("dbPath:", dbPath);
 console.log ("dataPath:", dataPath);
 
 var i = new Importer();
-i.loadData(dataPath, dbPath);
+i.loadData(dataPath, dbPath)
+    .then(() => {
+        console.log ("Done:");
+        console.log ("Data directory:", dataPath);
+        console.log ("Database directory:", dbPath);
+    })
+    .catch((err) => {
+        console.log ("ERROR:", err);
+    });
