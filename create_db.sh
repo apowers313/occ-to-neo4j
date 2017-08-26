@@ -97,6 +97,6 @@ echo "done."
 date
 
 echo "Loading CSV files into database..."
-cat create_db.cyp | cypher-shell
+cat create_db.cyp | cypher-shell --username neo4j --password passwd
 echo "all done."
 date
