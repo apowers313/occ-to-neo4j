@@ -79,13 +79,13 @@ RETURN "Created Bibliographic Entry (BE) records:" AS Result, count(row) AS ` `;
 
 // *************** create indicies ***************
 
-CREATE INDEX ON :BibliographicResource(iri);
-CREATE INDEX ON :Identifier(iri);
-CREATE INDEX ON :Agent(iri);
-CREATE INDEX ON :Role(iri);
-CREATE INDEX ON :ResourceEmbodiment(iri);
-CREATE INDEX ON :BibliographicEntry(iri);
-RETURN "Created iri indicies" AS ` `;
+CREATE CONSTRAINT ON (br:BibliographicResource) ASSERT br.iri IS UNIQUE;
+CREATE CONSTRAINT ON (id:Identifier) ASSERT id.iri IS UNIQUE;
+CREATE CONSTRAINT ON (agent:Agent) ASSERT agent.iri IS UNIQUE;
+CREATE CONSTRAINT ON (role:Role) ASSERT role.iri IS UNIQUE;
+CREATE CONSTRAINT ON (re:ResourceEmbodiment) ASSERT re.iri IS UNIQUE;
+CREATE CONSTRAINT ON (be:BibliographicEntry) ASSERT be.iri IS UNIQUE;
+RETURN "Created iri constraints" AS ` `;
 
 // *************** create links ***************
 
@@ -146,3 +146,4 @@ RETURN "Created BR contributor links:" AS Result, count(row) AS ` `;
 // MERGE (br)-[:ROLE {role: role.role_type}]->(role);
 
 RETURN "done." AS Result;
+
